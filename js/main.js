@@ -25,3 +25,47 @@ const images = [
     text: "Marvel's Avengers is an epic, third-person, action-adventure game that combines an original, cinematic story with single-player and co-operative gameplay.",
   },
 ];
+
+// dichiaro la variabile contenitore
+const carouselImagesContainer = document.querySelector('.my-carousel-images');
+
+// imposto forEach
+images.forEach((image, index) => {
+  // per ogni immagine creo un div
+  const slide = document.createElement('div');
+  slide.className = 'my-carousel-item';
+  if (index === 0) {
+    // active per gestire quale elemento del carosello è visibile all'utente: il primo
+    slide.classList.add('active');
+    console.log('La prima carrozza è attiva');
+  }
+
+  // creo l'elemento immagine
+  const imageElement = document.createElement('img');
+  imageElement.src = image.image;
+  imageElement.alt = image.title;
+  imageElement.className = 'img-fluid';
+
+  // appendo l'immagine
+  slide.appendChild(imageElement);
+
+  // div per titolo e descrizione
+  const descriptionDiv = document.createElement('div');
+  descriptionDiv.className = 'item-description px-3';
+
+  // Inserisco titolo nel div
+  const titleElement = document.createElement('h2');
+  titleElement.textContent = image.title;
+  console.log(titleElement);
+  descriptionDiv.appendChild(titleElement);
+
+  // inserisco la descrizione nel div
+  const textElement = document.createElement('p');
+  textElement.textContent = image.text;
+
+  // appendo titolo e descrizione al div
+  slide.appendChild(descriptionDiv);
+
+  // appendo il div al contenitore
+  carouselImagesContainer.appendChild(slide);
+});
